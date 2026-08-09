@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="63.259163mm"
+   height="27.766666mm"
+   viewBox="0 0 63.259163 27.766666"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="ForgeX.svg"
+   inkscape:export-filename="ForgeX.svg"
+   inkscape:export-xdpi="171.04372"
+   inkscape:export-ydpi="171.04372"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:export-bgcolor="#ffffff00"
+     inkscape:zoom="0.72604517"
+     inkscape:cx="398.04686"
+     inkscape:cy="339.51056"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1">
+    <inkscape:page
+       x="2.8013849e-23"
+       y="8.9644326e-22"
+       width="63.259163"
+       height="27.766666"
+       id="page1"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath16">
+      <rect
+         style="fill:none;fill-opacity:0;stroke:#000000;stroke-width:0.220722;stroke-dasharray:none;stroke-opacity:1"
+         id="rect17"
+         width="21.947239"
+         height="13.701418"
+         x="36.826366"
+         y="162.31744" />
+    </clipPath>
+  </defs>
+  <g
+     id="layer1"
+     style="fill:#000000;fill-opacity:1;stroke:#5b5a62;stroke-width:0;stroke-dasharray:none;stroke-opacity:0"
+     transform="translate(-34.40043,-101.41984)">
+    <g
+       id="g15"
+       transform="matrix(0.83068385,0,0,0.79792365,3.3631972,-28.718508)"
+       clip-path="url(#clipPath16)"
+       style="fill:#000000;fill-opacity:1;stroke:#5b5a62;stroke-width:0;stroke-dasharray:none;stroke-opacity:0">
+      <g
+         id="g16"
+         style="fill:#000000;fill-opacity:1;stroke:#5b5a62;stroke-width:0;stroke-dasharray:none;stroke-opacity:0">
+        <path
+           id="path10"
+           style="fill:#000000;fill-opacity:1;stroke:#5b5a62;stroke-width:0;stroke-dasharray:none;stroke-opacity:0"
+           d="m 44.965484,163.09624 v 1.36911 h -1.288229 -0.238683 -5.430278 -0.644822 a 6.313591,3.1566029 0 0 0 3.156656,2.7338 6.313591,3.1566029 0 0 0 2.918444,0.42085 v 0.90554 a 3.7033202,9.2244731 57.886344 0 1 2.076921,0.89277 3.7033202,9.2244731 57.886344 0 1 -2.076921,5.07622 v 0.89031 h 3.511379 a 3.1922805,1.3461921 0 0 1 -0.0533,-0.24553 3.1922805,1.3461921 0 0 1 3.192034,-1.34652 3.1922805,1.3461921 0 0 1 3.192505,1.34652 3.1922805,1.3461921 0 0 1 -0.05377,0.24553 h 4.776022 v -3.13599 a 3.2777816,7.5578492 69.367789 0 1 -4.584982,-1.31803 3.2777816,7.5578492 69.367789 0 1 4.584982,-5.1656 v -2.66898 z" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:18.7803px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:0.989933;fill:#000000;fill-opacity:1;stroke:#5b5a62;stroke-width:0;stroke-dasharray:none;stroke-opacity:0"
+       x="40.990856"
+       y="120.43148"
+       id="text1"
+       transform="scale(0.96360411,1.0377706)"><tspan
+         id="tspan1"
+         style="fill:#000000;fill-opacity:1;stroke:#5b5a62;stroke-width:0;stroke-dasharray:none;stroke-opacity:0"
+         x="40.990856"
+         y="120.43148">ForgeX</tspan></text>
+  </g>
+</svg>

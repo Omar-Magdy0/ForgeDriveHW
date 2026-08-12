@@ -1,0 +1,35 @@
+Version 4
+SymbolType BLOCK
+LINE Normal -112 -32 -80 -32
+LINE Normal -80 32 -112 32
+LINE Normal -128 32 -128 -32
+LINE Normal -176 32 -128 32
+LINE Normal -80 0 -112 0
+LINE Normal -80 32 -80 0
+LINE Normal -107 -4 -112 0
+LINE Normal -107 5 -107 -4
+LINE Normal -107 5 -112 0
+LINE Normal -112 6 -112 -6
+LINE Normal -112 38 -112 26
+LINE Normal -112 -26 -112 -38
+LINE Normal -80 -64 -80 -32
+LINE Normal -80 64 -80 32
+LINE Normal -65 13 -50 -18
+LINE Normal -34 13 -65 13
+LINE Normal -50 -18 -34 13
+LINE Normal -50 32 -50 -18
+LINE Normal -80 32 -50 32
+LINE Normal -50 -32 -50 -18
+LINE Normal -80 -32 -50 -32
+LINE Normal -34 -18 -66 -18
+TEXT -170 -63 Left 0 STFH24n60m2
+WINDOW 0 -128 -32 Bottom 2
+PIN -80 -64 NONE 8
+PINATTR PinName D
+PINATTR SpiceOrder 1
+PIN -176 32 NONE 8
+PINATTR PinName G
+PINATTR SpiceOrder 2
+PIN -80 64 NONE 8
+PINATTR PinName S
+PINATTR SpiceOrder 3

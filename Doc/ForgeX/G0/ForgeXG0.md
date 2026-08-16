@@ -5,7 +5,10 @@ export_on_save:
   prince: true
 ---
 
+@import "../../forgex_doc_style.css"
+
 ![](../ForgeX.svg)
+
 
 # ForgeX Gen0 — Three-Phase Inverter Hardware Architecture & Design
 > **Project:** ForgeX
@@ -18,10 +21,18 @@ export_on_save:
 
 ---
 
-![AssemblyView](a2.png)
-# 1. Introduction
+<div style="page-break-after: always;"></div>
 
-## 1.1 Purpose
+## Table of Contents
+[TOC]
+
+<div style="page-break-after: always;"></div>
+
+---
+
+## 1. Introduction
+![AssemblyView](a2.png)
+### 1.1 Purpose
 
 This document describes the architecture, design, implementation, and
 validation of the ForgeX Gen0 three-phase inverter platform.
@@ -40,7 +51,7 @@ constraints, and trade-offs that shaped the design.
 This document is intended to support continued development, maintenance,
 debugging, reproduction, and future evolution of the hardware.
 
-## 1.2 Gen0 Scope
+### 1.2 Gen0 Scope
 
 ForgeX Gen0 implements a modular three-phase voltage-source inverter
 intended primarily for motor-control and variable-speed drive
@@ -75,7 +86,7 @@ implementation. Firmware, control algorithms, application software,
 and motor-control theory are discussed only where they directly affect
 the hardware architecture or its interfaces.
 
-## 1.3 Design Objectives
+### 1.3 Design Objectives
 
 The ForgeX Gen0 hardware was developed with the following objectives:
 
@@ -119,7 +130,7 @@ electrical performance, safety, reliability, and well-defined
 architectural boundaries take precedence over modularity for its own
 sake.
 
-## 1.4 Relationship to the ForgeX Family
+### 1.4 Relationship to the ForgeX Family
 
 ForgeX Gen0 is the first hardware implementation of the ForgeX family
 architecture.
@@ -148,9 +159,9 @@ ForgeX generations.
 
 ---
 
-# 2. Gen0 System Architecture
+## 2. Gen0 System Architecture
 
-## 2.1 System Overview
+### 2.1 System Overview
 ForgeX Gen0 modular three-phase voltage-source inverter designed
 primarily for motor-control and variable-speed drive applications.
 
@@ -185,7 +196,7 @@ The modular arrangement allows the Gen0 inverter to be assembled from
 independently developed subsystems while maintaining defined
 electrical, mechanical, and functional interfaces between them.
 
-## 2.2 Functional Block Diagram
+### 2.2 Functional Block Diagram
 The following diagram illustrates the principal functional relationships
 between the ForgeX Gen0 hardware modules and the external system.
 
@@ -209,7 +220,7 @@ The LVP provides the principal interface between the processing domain
 and the power-stage hardware including measurement, encoder,
 protection, and control-related interfaces.
 
-# 3. Gen0 3-Phase Inverter Hardware Modules
+## 3. Gen0 3-Phase Inverter Hardware Modules
 ![ text](a3e.png)
 The ForgeX Gen0 three-phase inverter is implemented as a collection of
 functional hardware modules, each responsible for a defined portion of
@@ -225,9 +236,9 @@ Detailed circuit design, PCB implementation, interfaces, constraints,
 and validation results for each module are documented in the
 corresponding sections.
 
-## 3.1 LVP_G0S4
+### 3.1 LVP_G0S4
 
-### Low-Voltage Plane — Gen0, 4 Slots
+#### Low-Voltage Plane — Gen0, 4 Slots
 
 The LVP provides the primary low-voltage control and signal
 interconnection infrastructure for the Gen0 system.
@@ -244,9 +255,9 @@ The LVP is intentionally kept separate from the high-current power
 conversion hardware, allowing the low-voltage control and sensing
 infrastructure to evolve independently of the power stage.
 
-## 3.2 PMB_G0S4VH4
+### 3.2 PMB_G0S4VH4
 
-### Power MotherBus — Gen0, 4 Slots, 400 V Class
+**Power MotherBus — Gen0, 4 Slots, 400 V Class**
 
 The PMB provides the primary high-voltage power distribution
 infrastructure of the Gen0 inverter.
@@ -265,9 +276,9 @@ additional functionality such as bus measurement, protection, or
 precharge infrastructure can be introduced in future implementations
 without changing the fundamental role of the PMB.
 
-## 3.3 HBM_G0VH4C5
+### 3.3 HBM_G0VH4C5
 
-### Half-Bridge Module — Gen0, 400 V Class, 5 A
+**Half-Bridge Module — Gen0, 400 V Class, 5 A**
 
 The HBM is the localized power-switching module of the ForgeX Gen0
 inverter.
@@ -288,9 +299,9 @@ high-\(di/dt\) switching loops, gate-drive paths, current Sensing,
 module output voltae sensing, and local decoupling are contained within 
 the module rather than distributed across the wider system.
 
-## 3.4 PSU_G0P20N
+### 3.4 PSU_G0P20N
 
-### Power Supply Module — Gen0, 20 W
+**Power Supply Module — Gen0, 20 W**
 
 The PSU provides the auxiliary low-voltage power required by the
 ForgeX Gen0 system.
@@ -315,9 +326,9 @@ The module provides the required supply rails to the low-voltage,
 processing, and power-stage subsystems through the defined Gen0
 interfaces.
 
-## 3.5 BlackDev_G0Basic
+### 3.5 BlackDev_G0Basic
 
-### Processing / Development Module — STM32F401/F411
+**Processing / Development Module — STM32F401/F411**
 
 `BlackDev_G0Basic` is the primary processing and development module
 used with the ForgeX Gen0 platform.
@@ -356,7 +367,7 @@ are maintained.
 
 ---
 
-### Gen0 Module Overview
+**Gen0 Module Overview**
 
 | Module | Role | Primary Rating / Characteristic |
 |---|---|---|
@@ -370,9 +381,11 @@ These modules form the baseline Gen0 hardware ecosystem. The following
 sections describe their individual electrical architectures,
 interfaces, PCB implementation, design constraints, and validation.
 
-# 4. System Level Layout and Design 
+---
 
-## 4.1 Power Distribution Network (PDN) and Grounding Scheme
+## 4. System Level Layout and Design 
+
+### 4.1 Power Distribution Network (PDN) and Grounding Scheme
 
 The ForgeX Gen0 system employs a bus-like power distribution structure,
 with the primary DC-bus interconnection centralized at the PMB.
@@ -414,9 +427,9 @@ and electromagnetic interference.
 
 ---
 
-# 5. Module Level Overview and External Interfaces
+## 5. Module Level Overview and External Interfaces
 
-## 5.1 PMB_G0S4VH4 Brief
+### 5.1 PMB_G0S4VH4 Brief
 
 **Revision:** revA  
 [Design Files](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/PMB_G0S4VH4/revA)
@@ -475,7 +488,7 @@ mechanical rigidity for the assembled power structure.
 ![](PMB0e.png)
 ---
 
-## 5.2 LVP_G0S4 Brief
+### 5.2 LVP_G0S4 Brief
 
 **Revision:** revA  
 [Design Files](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/LVP_G0S4/revA)
@@ -488,7 +501,7 @@ platform.
 
 The current revision exposes the following primary feature set.
 
-### Encoder Interfaces
+**Encoder Interfaces
 
 The LVP provides native physical-layer support for several encoder
 interface types, allowing the same hardware platform to accommodate
@@ -506,7 +519,7 @@ The encoder interfaces are routed through the LVP's low-voltage signal
 infrastructure and are presented to the processing domain through the
 defined system interfaces.
 
-### Processing and Communication (PC40G0) Interface 
+**Processing and Communication (PC40G0) Interface**
 
 The `LVP_G0S4` PC40G0 Interface exposes a packed 40-pin system connector carrying the
 primary low-voltage signals exchanged between the processing domain,
@@ -516,7 +529,7 @@ The connector consolidates the principal digital and analog signals
 required for system integration while maintaining a defined interface
 between the LVP and the remainder of the ForgeX hardware.
 
-### Expansion Interfaces
+**Expansion Interfaces**
 
 The LVP provides multiple expansion interfaces, including:
 
@@ -537,7 +550,7 @@ This provides a path toward increasing system capability without
 requiring a corresponding increase in complexity on the primary
 processing module.
 
-### Temperature and Fan Interfaces
+**Temperature and Fan Interfaces**
 
 The LVP provides three channels of 100 kOhm NTC temperature-sensor signal
 conditioning for monitoring temperatures at multiple locations within
@@ -551,7 +564,7 @@ The interfaces provide the basic infrastructure required for thermal
 management while leaving room for more sophisticated fan-control
 strategies in future generations.
 
-### High-Speed Overcurrent Protection
+**High-Speed Overcurrent Protection**
 
 The LVP implements three high-speed comparator channels for
 overcurrent protection.
@@ -567,7 +580,7 @@ stage following detection of an overcurrent condition.
 This architecture provides a fast protection mechanism while keeping
 the protection decision outside the normal software control loop.
 
-### High-Speed Digital Layout
+**High-Speed Digital Layout**
 
 The LVP PCB layout is designed around the electrical requirements of
 its high-speed digital interfaces.
@@ -591,12 +604,12 @@ termination, loading.
 
 ![](LVP0e.png)
 
-## 5.3 HBM_G0VH4C5 Brief
+### 5.3 HBM_G0VH4C5 Brief
 
 **Revision:** revA  
 [Design Files](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/HBM_G0VH4C5/revA)
 [Schematic](https://github.com/Omar-Magdy0/ForgeDriveHW/blob/main/ForgeX/HBM_G0VH4C5/revA/Doc/HBM_G0VH4C5.pdf)
-**Technical Documentation:** *Work in Progress🛠️ *
+[Technical Reference](HBM_G0VH4C5_tref.pdf)
 
 The `HBM_G0VH4C5` (Half-Bridge Module) implements one switching
 leg of the ForgeX Gen0 three-phase inverter.
@@ -635,7 +648,7 @@ measurement infrastructure of the ForgeX architecture.
 
 ---
 
-## 5.4 PSU_G0P20N Brief
+### 5.4 PSU_G0P20N Brief
 
 **Revision:** revA  
 [Design Files](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/PSU_G0P20N/revA)
@@ -668,59 +681,59 @@ different auxiliary power module.
 ![](PSU0.png)
 ---
 
-# 🛠️UNDER DEVELOPMENT🛠️
+## 🛠️UNDER DEVELOPMENT🛠️
 
 **Sections Under are mainly still to be implemented**
 
 
 ---
 
-# 10. Validation and Bring-Up
+## 10. Validation and Bring-Up
 
-## 10.1 Initial Bring-Up
+### 10.1 Initial Bring-Up
 
-## 10.2 Low-Voltage Testing
+### 10.2 Low-Voltage Testing
 
-## 10.3 Gate-Drive Validation
+### 10.3 Gate-Drive Validation
 
-## 10.4 PWM Validation
+### 10.4 PWM Validation
 
-## 10.5 ADC / Measurement Validation
+### 10.5 ADC / Measurement Validation
 
-## 10.6 Switching Validation
+### 10.6 Switching Validation
 
-## 10.7 Thermal Validation
+### 10.7 Thermal Validation
 
-## 10.8 Protection Validation
+### 10.8 Protection Validation
 
-## 10.9 Motor Testing
-
----
-
-# 11. Known Issues and Limitations
-
-## 11.1 Known Hardware Issues
-
-## 11.2 Performance Limitations
-
-## 11.3 Documentation Gaps
-
-## 11.4 Mechanical Assembly
+### 10.9 Motor Testing
 
 ---
 
-# 13. Future Development
+## 11. Known Issues and Limitations
 
-## 13.1 Gen0 Improvements
+### 11.1 Known Hardware Issues
 
-## 13.2 Potential Gen1 Changes
+### 11.2 Performance Limitations
 
-## 13.3 Interface Evolution
+### 11.3 Documentation Gaps
 
-## 13.4 Performance Improvements
-
-## 13.5 Additional Modules
+### 11.4 Mechanical Assembly
 
 ---
 
-# 14. Revision History
+## 13. Future Development
+
+### 13.1 Gen0 Improvements
+
+### 13.2 Potential Gen1 Changes
+
+### 13.3 Interface Evolution
+
+### 13.4 Performance Improvements
+
+### 13.5 Additional Modules
+
+---
+
+## 14. Revision History

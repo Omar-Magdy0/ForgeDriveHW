@@ -5,7 +5,10 @@ export_on_save:
   prince: true
 ---
 
-![alt](../ForgeDrive.svg)
+@import "../forgex_doc_style.css"
+
+![alt](./Forgex.svg)
+# ForgeX Introduction
 > **Project:** ForgeX  
 > **Document:** ForgeX Introduction
 > **Author:** Omar Magdy  
@@ -15,8 +18,8 @@ export_on_save:
 
 ---
 
-# ForgeX Introduction
-![alt](./Forgex.svg)
+
+
 ## Motivation
 
 Forged from the need for a highly scalable, cost-effective, and

@@ -1,0 +1,77 @@
+@page {
+    size: A4;
+    margin: 16mm 16mm 16mm 16mm;
+
+    /* =========================
+   HEADER
+   ========================= */
+    @top-left {
+        content: string(section-title);
+        font-size: 10pt;
+        border-bottom: 1pt solid #000000;
+    }
+
+    @top-right {
+        content: "";
+        display: inline-block;
+        height: 20mm;
+        width: 20mm;
+        background-image: url("ForgeDrive.svg");
+        background-size: contain;
+        /* or 150px 150px */
+        background-repeat: no-repeat;
+        background-position: right center;
+        border-bottom: 1pt solid #000000;
+    }
+
+    /* =========================
+   FOOTER
+   ========================= */
+    @bottom-left {
+        content: string(doc-title);
+        font-size: 10pt;
+        border-top: 1pt solid #000000;
+    }
+
+    @bottom-right {
+        content: counter(page);
+        font-size: 10pt;
+        border-top: 1pt solid #000000;
+    }
+}
+
+
+
+h1 {
+    string-set: doc-title content();
+}
+
+h2 {
+    break-before: page;
+    string-set: section-title content();
+}
+
+hr {
+    display: none;
+}
+
+/* ============================================================
+   ABLE OF CONTENTS
+   =========================================================== */
+.md-toc-link {
+    display: block;
+    color: #111;
+    text-decoration: none;
+}
+
+.md-toc-link::after {
+    content: leader(".") target-counter(attr(href), page);
+}
+
+.md-toc-link-wrapper[data-level="2"] {
+    margin-left: 5mm;
+}
+
+.md-toc-link-wrapper[data-level="3"] {
+    margin-left: 10mm;
+}

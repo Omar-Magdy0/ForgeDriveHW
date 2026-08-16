@@ -609,7 +609,7 @@ termination, loading.
 **Revision:** revA  
 [Design Files](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/HBM_G0VH4C5/revA)
 [Schematic](https://github.com/Omar-Magdy0/ForgeDriveHW/blob/main/ForgeX/HBM_G0VH4C5/revA/Doc/HBM_G0VH4C5.pdf)
-[Technical Reference](HBM_G0VH4C5_tref.pdf)
+[Technical Reference](https://github.com/Omar-Magdy0/ForgeDriveHW/blob/main/Doc/ForgeX/G0/HBM_G0VH4C5_tref.pdf)
 
 The `HBM_G0VH4C5` (Half-Bridge Module) implements one switching
 leg of the ForgeX Gen0 three-phase inverter.

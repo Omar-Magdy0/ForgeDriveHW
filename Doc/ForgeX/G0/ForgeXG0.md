@@ -653,7 +653,7 @@ measurement infrastructure of the ForgeX architecture.
 **Revision:** revA  
 [Design Files](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/PSU_G0P20N/revA)
 [Schematic](https://github.com/Omar-Magdy0/ForgeDriveHW/blob/main/ForgeX/PSU_G0P20N/revA/Doc/PSU_G0P20N.pdf)
-**Technical Documentation** (*Work in Progress🛠️*)
+[Technical Documentation](https://github.com/Omar-Magdy0/ForgeDriveHW/blob/main/Doc/ForgeX/G0/PSU_G0P20N_tref.pdf)
 
 The `PSU_G0P20N` provides the auxiliary low-voltage power required by
 the ForgeX Gen0 platform. The module is designed with galvanic

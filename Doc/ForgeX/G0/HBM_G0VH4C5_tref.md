@@ -621,7 +621,7 @@ A first-pass RC snubber value was estimated from the effective switching-loop
 inductance and the MOSFET parasitic capacitance. The initial values are:
 
 \[
-C_{snub}\approx 4\times C_{oss}\approx220\,\mathrm{pF} \\[6pt]
+C_{snub}\approx 4\times C_{oss}\approx220\,\mathrm{pF} \\[4pt]
 R_{snub}\approx\sqrt{\frac{L_0}{C_{oss}}}\approx 25\,\Omega
 \]
 
@@ -803,7 +803,7 @@ Creepage requirements are considered throughout the PCB layout, with an average 
 The high-frequency power loop is formed by the high-frequency decoupling capacitors, the high-side MOSFET, and the low-side MOSFET. The primary current path is:
 
 \[
-+C_{HF} \rightarrow \text{High-Side FET Drain} \rightarrow \text{High-Side FET Source} \rightarrow \\[6pt]
++C_{HF} \rightarrow \text{High-Side FET Drain} \rightarrow \text{High-Side FET Source} \rightarrow \\[4pt]
  \text{Low-Side FET Drain} \rightarrow \text{Low-Side FET Source} \rightarrow -C_{HF}
 \]
 
@@ -843,6 +843,8 @@ The complete hardware design files for this module are maintained in the ForgeX 
 - [PCB & Schematic](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/HBM_G0VH4C5/revA)
 - [Simulation](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/HBM_G0VH4C5/revA/Doc/simulation)
 - **Manufacturing files:** 🛠️
+
+---
 
 ## 8. Simulation
 
@@ -1001,8 +1003,6 @@ reference shifts, ground bounce, common-impedance coupling, and related
 noise/EMI effects resulting from the interaction between the power and
 logic domains.
 
----
-
 #### 8.4.1 SLinverter Test0
 
 **Simulation file:** `simulation/HBM_SLinverter_test.asc`
@@ -1021,14 +1021,14 @@ operation.
 **Load Resistor Sizing**
 \[
 \begin{aligned}
-V_{A} &= V_{VDCH}/2  \\[6pt] 
-V_{n,RMS} &= \frac{4V_{A}}{nπ \sqrt{2}} \\[6pt]
-V_{1,RMS} &= 180 \\[6pt]
-V_{3,RMS} &= 60 \\[6pt]
-XL_1&​=2πfL≈6.28Ω \\[6pt]
-XL_2&​=3\times2πfL≈18.85Ω \\[6pt]
-P_{Load} &= \frac{V_{1,RMS}^2R_{Load}}{R_{Load}^2+XL_{1}^2} + \frac{V_{3,RMS}^2R_{Load}}{R_{Load}^2+XL_{3}^2} \\[6pt]
-R_{Load} &= 14.21\,\Omega, 2.92\,\Omega \quad\text{(Choosing 14.21 for lower peak current)} \\[6pt] 
+V_{A} &= V_{VDCH}/2  \\[4pt] 
+V_{n,RMS} &= \frac{4V_{A}}{nπ \sqrt{2}} \\[4pt]
+V_{1,RMS} &= 180 \\[4pt]
+V_{3,RMS} &= 60 \\[4pt]
+XL_1&​=2πfL≈6.28Ω \\[4pt]
+XL_2&​=3\times2πfL≈18.85Ω \\[4pt]
+P_{Load} &= \frac{V_{1,RMS}^2R_{Load}}{R_{Load}^2+XL_{1}^2} + \frac{V_{3,RMS}^2R_{Load}}{R_{Load}^2+XL_{3}^2} \\[4pt]
+R_{Load} &= 14.21\,\Omega, 2.92\,\Omega \quad\text{(Choosing 14.21 for lower peak current)} \\[4pt] 
 R_{Load}& \approx14\,\Omega
 \end{aligned}
 \]
@@ -1039,7 +1039,7 @@ R_{Load}& \approx14\,\Omega
 \]
 choosing a 20uF per cap results in 
 \[
- ΔV = 1.35V \\[6pt]
+ ΔV = 1.35V \\[4pt]
  V_{midpoint} = 200 \pm 1.35
 \]
 
@@ -1090,21 +1090,21 @@ operation.
 **Load Resistor Sizing**
 \[
 \begin{aligned}
-V_{A} &= V_{VDCH}/2  \\[6pt] 
-V_{1,RMS} &= m\times \frac{200}{\sqrt{2}} = 130.1 \\[6pt]
-XL&​=2πfL≈0.314\Omega \\[6pt]
-P_{Load} &= \frac{V_{1,RMS}^2R_{Load}}{R_{Load}^2+XL^2} \\[6pt]
-R_{Load} &= 8.45\,\Omega,  11.66\,m\Omega \quad\text{(Choosing 8.45 for lower peak current)} \\[6pt] 
+V_{A} &= V_{VDCH}/2  \\[4pt] 
+V_{1,RMS} &= m\times \frac{200}{\sqrt{2}} = 130.1 \\[4pt]
+XL&​=2πfL≈0.314\Omega \\[4pt]
+P_{Load} &= \frac{V_{1,RMS}^2R_{Load}}{R_{Load}^2+XL^2} \\[4pt]
+R_{Load} &= 8.45\,\Omega,  11.66\,m\Omega \quad\text{(Choosing 8.45 for lower peak current)} \\[4pt] 
 R_{Load} &\approx8.5\,\Omega
 \end{aligned}
 \]
 
 **Split-Rail Capacitor Sizing**
 \[
- C ≥ \frac{\sqrt{2}I_{rms}}{​2\pi f_{elec}ΔV} \\[6pt]
- ΔV = 13.5 \\[6pt]
- C \approx 5\,\mathrm{mF} \\[6pt]
- V_{midpoint} = 200 \pm 13.5 \\[6pt]
+ C ≥ \frac{\sqrt{2}I_{rms}}{​2\pi f_{elec}ΔV} \\[4pt]
+ ΔV = 13.5 \\[4pt]
+ C \approx 5\,\mathrm{mF} \\[4pt]
+ V_{midpoint} = 200 \pm 13.5 \\[4pt]
 \]
 
 
@@ -1129,8 +1129,6 @@ R_{Load} &\approx8.5\,\Omega
     Low-side VDS max    : 434.378 V
     High-side VDS min   : -13.069 V
     Low-side VDS min    : -13.109 V
-
----
 
 ### 8.5 Digest and Conclusion
 
@@ -1188,6 +1186,9 @@ primary areas requiring hardware verification.
 The simulation results therefore serve as a baseline for subsequent
 prototype testing and layout refinement rather than as a replacement for
 physical validation.
+
+---
+
 ## 9. Field Tests and Validation 🛠️
 
 [Document laboratory testing, measurements, test conditions, and

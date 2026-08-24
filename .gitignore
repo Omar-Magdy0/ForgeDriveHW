@@ -32,5 +32,4 @@ fp-info-cache
 *.raw
 sim_results_data/*csv
 *.raw
-*.plt
 *.log

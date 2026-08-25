@@ -31,7 +31,7 @@ export_on_save:
 ---
 
 ## 1. Introduction
-![AssemblyView](a2.png)
+![AssemblyView](Images_G0A/a2.png)
 ### 1.1 Purpose
 
 This document describes the architecture, design, implementation, and

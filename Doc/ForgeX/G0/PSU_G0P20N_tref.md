@@ -98,7 +98,7 @@ The conditioned VDCH measurement is particularly relevant to applications such a
 
 ## 2. Interfaces & I/O
 
-![PSU interface drawing](PSU0e.svg)
+![PSU interface drawing](Images_G0A/PSU0e.svg)
 
 The PSU interfaces with the ForgeX system through dedicated **VDCH power**, **low-voltage output**, and **auxiliary/tie** interfaces.
 
@@ -1048,7 +1048,7 @@ The Type-II voltage-loop compensator is designed at **low line \(V_{\text{in,min
 
 \( G_{\text{comp}}(s) = A \cdot \frac{\left(1 + \frac{s}{\omega_{\text{cz1}}}\right)}{s\left(1 + \frac{s}{\omega_{\text{cp1}}}\right)} \)
 
-![alt text](t2_comp.png)
+![alt text](Images_G0A/t2_comp.png)
 
 \[
 \begin{aligned}
@@ -1383,7 +1383,7 @@ operating conditions.
 
 ## 6. Layout Considerations & Highlights
 
-![PSU layout](PSU1e.svg)
+![PSU layout](Images_G0A/PSU1e.svg)
 
 The PCB layout was developed with particular attention to high-voltage
 creepage and clearance, galvanic isolation, thermal management, and
@@ -1563,8 +1563,8 @@ nominal operating range endpoints.
 
 * **At \(V_{in}=340\,\mathrm{V}\)**
 
-![Load current](PSUG0P20NTest340_LoadCurrent.svg)
-![Switching waveforms](PSUG0P20NTest340_SwitchingWaveforms.svg)
+![Load current](Images_G0A/PSUG0P20NTest340_LoadCurrent.svg)
+![Switching waveforms](Images_G0A/PSUG0P20NTest340_SwitchingWaveforms.svg)
 **Power analysis interval:** \(60\,\mathrm{ms}\rightarrow70\,\mathrm{ms}\)
 | Quantity | Result |
 |----------|-------:|
@@ -1579,9 +1579,9 @@ dissipation is approximately \(0.45\,\mathrm{W}\).
 
 * **At \(V_{in}=400\,\mathrm{V}\)**
 
-![Load current](PSUG0P20NTest400_LoadCurrent.svg)
+![Load current](Images_G0A/PSUG0P20NTest400_LoadCurrent.svg)
 
-![Switching waveforms](PSUG0P20NTest400_SwitchingWaveforms.svg)
+![Switching waveforms](Images_G0A/PSUG0P20NTest400_SwitchingWaveforms.svg)
 
 **Power analysis interval:** \(60\,\mathrm{ms}\rightarrow70\,\mathrm{ms}\)
 

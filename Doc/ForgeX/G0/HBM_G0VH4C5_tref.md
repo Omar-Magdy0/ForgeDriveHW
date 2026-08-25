@@ -87,7 +87,7 @@ The principal functions of the HBM are:
 
 ## 2. Interfaces & I/O
 
-![](HBM0e.svg)
+![](Images_G0A/HBM0e.svg)
 
 The HBM interfaces with the remainder of the ForgeX system through dedicated power and low-voltage interfaces.
 
@@ -795,7 +795,7 @@ Overall, the placement strategy keeps the gate-drive components physically close
 **Creepage**
 Creepage requirements are considered throughout the PCB layout, with an average creepage distance of approximately \(3\,\mathrm{mm}\) maintained across the board for the high-voltage regions. The minimum creepage condition is localized to the TO-220 MOSFET footprints, where the package geometry and pad arrangement impose the most restrictive spacing.
 
-![alt](HBM0e1.svg)
+![alt](Images_G0A/HBM0e1.svg)
 **Attention was paid to the following critical current loops, as illustrated in the previous figure.**
 
 **1. High-Frequency Power Loop**
@@ -884,7 +884,7 @@ The following test circuits are provided under `simulation/`:
 - `simulation/STFH24N60M2_test_outChar.asc` — Output characteristics
 - `simulation/STFH24N60M2_test_tranChar.asc` — Transfer characteristics
 
-![alt text](stfh24n60m2_ltspice.png)
+![alt text](Images_G0A/stfh24n60m2_ltspice.png)
 
 **Model Tuning Approach**
 
@@ -928,7 +928,7 @@ tuned against the specified gate-driver characteristics, including:
 - UVLO behavior
 - Internal bootstrap-diode behavior
 
-![alt text](l6388_ltspice.png)
+![alt text](Images_G0A/l6388_ltspice.png)
 
 The model is primarily intended to reproduce the gate driver's switching
 behavior and its interaction with the MOSFET gate network rather than to
@@ -956,7 +956,7 @@ The model includes representations of:
 - Shunt-resistor behavior
 - Other first-order parasitic elements relevant to the module
 
-![alt text](hbm_g0vh4c5_ltspice.png)
+![alt text](Images_G0A/hbm_g0vh4c5_ltspice.png)
 
 The model is intended to provide a first-order representation of the
 module's electrical behavior and to evaluate the interaction between the
@@ -1044,10 +1044,10 @@ choosing a 20uF per cap results in
 \]
 
 **Results & Notable Plots**
-![alt](SLinvtest0_LoadVoltageCurrent.svg)
-![alt](SLinvtest0_SwitchNodeVoltage.svg)
-![alt](SLinvtest0_GateCurrents.svg)
-![alt](SLinvtest0_HighSideTurnOnOff.svg)
+![alt](Images_G0A/SLinvtest0_LoadVoltageCurrent.svg)
+![alt](Images_G0A/SLinvtest0_SwitchNodeVoltage.svg)
+![alt](Images_G0A/SLinvtest0_GateCurrents.svg)
+![alt](Images_G0A/SLinvtest0_HighSideTurnOnOff.svg)
 
     HBM INVERTER SLinverter Test0 RESULTS
     --- Power ---
@@ -1109,10 +1109,10 @@ R_{Load} &\approx8.5\,\Omega
 
 
 **Results & Notable Plots**
-![alt](SLinvtest1_LoadVoltageCurrent.svg)
-![alt](SLinvtest1_SwitchNodeVoltage.svg)
-![alt](SLinvtest1_GateCurrents.svg)
-![alt](SLinvtest1_HighSideTurnOnOff.svg)
+![alt](Images_G0A/SLinvtest1_LoadVoltageCurrent.svg)
+![alt](Images_G0A/SLinvtest1_SwitchNodeVoltage.svg)
+![alt](Images_G0A/SLinvtest1_GateCurrents.svg)
+![alt](Images_G0A/SLinvtest1_HighSideTurnOnOff.svg)
 
     HBM INVERTER SLinverter Test0 RESULTS
     --- Power ---

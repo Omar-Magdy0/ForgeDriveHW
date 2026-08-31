@@ -83,6 +83,17 @@ The principal functions of the HBM are:
 - Interface to the ForgeX PMB power infrastructure
 - Low-voltage control interface to the ForgeX LVP
 
+### 1.3 Design Files
+
+The complete hardware design files for this module are maintained in the ForgeX repository:
+
+![](Images_G0A/HBM_G0VH4C5.pdf)
+
+**revA:**
+- [PCB & Schematic](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/HBM_G0VH4C5/revA)
+- [Simulation](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/HBM_G0VH4C5/revA/Doc/simulation)
+- **Manufacturing files:** 🛠️
+
 ---
 
 ## 2. Interfaces & I/O
@@ -756,9 +767,352 @@ The switch-node measurement is particularly useful in operating conditions where
 * [Infineon — Using Monolithic High-Voltage Gate Drivers](https://www.infineon.com/row/public/documents/24/42/infineon-using-monolithic-high-voltage-gate-drivers-applicationnotes-en.pdf)
 * [Seminar 1400 Topic 2 APDX Estimating MOSFET Parameters from the Data Sheet](https://www.ti.com/lit/ml/slup170/slup170.pdf?ts=1786803369734)
 
+---
+
+## 6. Simulation
+
+Simulation is used as a first-pass validation and design tool for the
+HBM.
+
+The simulations are intended to:
+
+- Validate initial electrical estimates
+- Evaluate the effects of layout-related parasitics
+- Assist with component sizing
+- Investigate switching behavior and transient effects
+- Provide a basis for first-pass design tuning
+
+Simulation results are not considered a substitute for physical testing
+and validation. Their accuracy depends on the quality, fidelity, and
+applicability of the underlying semiconductor, parasitic, and system
+models.
+
+The primary simulation focus is the power-electronics behavior of the
+module and its associated switching infrastructure.
+
+### 6.1 MOSFET Model
+
+An LTspice VDMOS-based MOSFET model was developed for the selected
+`STFH24N60M2`. The model parameters were tuned and tested against the
+available datasheet characteristics and test conditions.
+
+The model-development process was assisted by the
+[Hendrik Jan Zwerver LTspice VDMOS modeling guide](http://www.magma.ca/~legg/SR5/LTspice_build_in_VDmos_model.pdf).
+
+The following test circuits are provided under `simulation/`:
+
+- `simulation/STFH24N60M2_test_bodyDiode.asc` — DC body-diode characteristics
+- `simulation/STFH24N60M2_test_bodyDiode2.asc` — Double-pulse test and reverse-recovery tuning
+- `simulation/STFH24N60M2_test_cap.asc` — MOSFET parasitic-capacitance characterization
+- `simulation/STFH24N60M2_test_outChar.asc` — Output characteristics
+- `simulation/STFH24N60M2_test_tranChar.asc` — Transfer characteristics
+
+![alt text](Images_G0A/stfh24n60m2_ltspice.png)
+
+**Model Tuning Approach**
+
+The model was tuned primarily around the intended operating point rather
+than attempting to reproduce every datasheet characteristic with equal
+accuracy.
+
+The LTspice VDMOS model provides a limited set of degrees of freedom
+compared with a detailed manufacturer subcircuit. Consequently, the
+available parameters were selected and adjusted to provide useful
+agreement with the MOSFET behavior in the operating region relevant to
+the HBM.
+
+For example, parameters such as \(K_P\) were tuned around the intended
+operating drain-current region rather than being optimized solely for
+accuracy in the saturation region.
+
+Datasheet test circuits and their corresponding operating conditions were
+used as references during parameter tuning.
+
+This approach represents a deliberate compromise between **model
+accuracy and simulation performance**. A detailed manufacturer
+subcircuit could potentially provide greater fidelity across a wider
+range
+of operating conditions, but the VDMOS-based model provides a simpler and
+faster model for iterative power-electronics simulation.
+
+### 6.2 MOSFET Gate-Driver Model
+
+A behavioral LTspice model of the `L6388` gate driver was developed to
+reproduce the relevant characteristics of the gate-driver IC and its
+interaction with the MOSFET.
+
+The model was developed using the available datasheet information and
+tuned against the specified gate-driver characteristics, including:
+
+- Logic-input thresholds and hysteresis
+- Propagation delays
+- Typical deadtime
+- Gate-source and gate-sink output impedance
+- UVLO behavior
+- Internal bootstrap-diode behavior
+
+![alt text](Images_G0A/l6388_ltspice.png)
+
+The model is primarily intended to reproduce the gate driver's switching
+behavior and its interaction with the MOSFET gate network rather than to
+model the internal semiconductor implementation of the IC.
+
+The following test circuit is provided under `simulation/`:
+
+- `simulation/L6388_test.asc` — Gate-driver sourcing and sinking behavior using a
+  `1000 pF` load, used to compare the behavioral model against the
+  datasheet characteristics.
+
+### 6.3 HBM_G0VH4C5 Module Model
+
+A simulation model was developed for the `HBM_G0VH4C5` module to
+evaluate the electrical behavior of the complete half-bridge power stage.
+
+The model includes representations of:
+
+- Voltage-sensing behavior
+- Current-sensing behavior
+- MOSFET package parasitics
+- Power-input connection inductance
+- High-frequency switching-loop inductance
+- Gate-drive loop inductance
+- Shunt-resistor behavior
+- Other first-order parasitic elements relevant to the module
+
+![alt text](Images_G0A/hbm_g0vh4c5_ltspice.png)
+
+The model is intended to provide a first-order representation of the
+module's electrical behavior and to evaluate the interaction between the
+power stage, gate-drive circuitry, sensing circuitry, and parasitic
+elements.
+
+### 6.4 Inductive-Load Single-Leg Inverter Test
+
+The single-leg inverter model serves as a performance indicator for the
+`HBM_G0VH4C5` power stage.
+
+It provides a simplified environment for evaluating:
+
+- Switching behavior
+- Gate-drive performance
+- Commutation behavior
+- Switch-node voltage overshoot and ringing
+- Load-current behavior
+- Estimated switching losses
+- Effects of parasitic inductance and resistance
+
+The test environment is intentionally simpler than the complete
+system-level inverter, allowing individual characteristics of the HBM
+power stage to be evaluated before system-level integration.
+
+The single-leg inverter simulations include expected parasitic
+impedances of approximately:
+
+\[
+R_{PGND-LGND}=10\,\mathrm{m\Omega}
+\]
+
+and:
+
+\[
+L_{PGND-LGND}=20\,\mathrm{nH}
+\]
+
+between `PGND` and `LGND` for typical expected applications of the
+module.
+
+These parasitic elements allow the simulation to investigate logic
+reference shifts, ground bounce, common-impedance coupling, and related
+noise/EMI effects resulting from the interaction between the power and
+logic domains.
+
+#### 6.4.1 SLinverter Test0
+
+**Simulation file:** `simulation/HBM_SLinverter_test.asc`
+
+This test applies a **100 kHz PWM signal with 50% duty cycle** and no
+sinusoidal carrier to a **2 kW RL load** with:
+
+\[
+L_{Load}=10\,\mu\mathrm{H}
+\]
+
+The load resistance was selected to correspond to approximately 2 kW
+operation.
+
+
+**Load Resistor Sizing**
+\[
+\begin{aligned}
+V_{A} &= V_{VDCH}/2  \\[4pt] 
+V_{n,RMS} &= \frac{4V_{A}}{nπ \sqrt{2}} \\[4pt]
+V_{1,RMS} &= 180 \\[4pt]
+V_{3,RMS} &= 60 \\[4pt]
+XL_1&​=2πfL≈6.28Ω \\[4pt]
+XL_2&​=3\times2πfL≈18.85Ω \\[4pt]
+P_{Load} &= \frac{V_{1,RMS}^2R_{Load}}{R_{Load}^2+XL_{1}^2} + \frac{V_{3,RMS}^2R_{Load}}{R_{Load}^2+XL_{3}^2} \\[4pt]
+R_{Load} &= 14.21\,\Omega, 2.92\,\Omega \quad\text{(Choosing 14.21 for lower peak current)} \\[4pt] 
+R_{Load}& \approx14\,\Omega
+\end{aligned}
+\]
+
+**Split-Rail Capacitor Sizing**
+\[
+ C ≥ \frac{\sqrt{2}I_{rms}}{2 \pi f_{SW}ΔV}
+\]
+choosing a 20uF per cap results in 
+\[
+ ΔV = 1.35V \\[4pt]
+ V_{midpoint} = 200 \pm 1.35
+\]
+
+**Results & Notable Plots**
+![alt](Images_G0A/SLinvtest0_LoadVoltageCurrent.svg)
+![alt](Images_G0A/SLinvtest0_SwitchNodeVoltage.svg)
+![alt](Images_G0A/SLinvtest0_GateCurrents.svg)
+![alt](Images_G0A/SLinvtest0_HighSideTurnOnOff.svg)
+
+    HBM INVERTER SLinverter Test0 RESULTS
+    --- Power ---
+    Efficiency interval : 1.500 -> 1.700 ms
+    Average input power : 2016.217 W
+    Average output power: 1969.905 W
+    Efficiency          : 97.703 %
+    --- MOSFET Losses ---
+    High-side avg loss  : 19.066 W
+    Low-side avg loss   : 18.833 W
+    Total MOSFET loss   : 37.899 W
+    --- VDS Stress ---
+    High-side VDS max   : 418.979 V
+    Low-side VDS max    : 418.874 V
+    High-side VDS min   : -11.204 V
+    Low-side VDS min    : -11.046 V
 
 ---
-## 6. Layout Considerations & Highlights
+
+#### 6.4.2 SLinverter Test1
+
+**Simulation file:** `simulation/HBM_SLinverter_test1.asc`
+
+This test applies a **10 kHz sinusoidal PWM signal** with a modulation
+index of:
+
+\[
+m=0.92
+\]
+
+to a **2 kW RL load** with:
+
+\[
+L_{Load}=1\,\mathrm{mH}
+\]
+
+The load resistance was selected to correspond to approximately 2 kW
+operation.
+
+**Load Resistor Sizing**
+\[
+\begin{aligned}
+V_{A} &= V_{VDCH}/2  \\[4pt] 
+V_{1,RMS} &= m\times \frac{200}{\sqrt{2}} = 130.1 \\[4pt]
+XL&​=2πfL≈0.314\Omega \\[4pt]
+P_{Load} &= \frac{V_{1,RMS}^2R_{Load}}{R_{Load}^2+XL^2} \\[4pt]
+R_{Load} &= 8.45\,\Omega,  11.66\,m\Omega \quad\text{(Choosing 8.45 for lower peak current)} \\[4pt] 
+R_{Load} &\approx8.5\,\Omega
+\end{aligned}
+\]
+
+**Split-Rail Capacitor Sizing**
+\[
+ C ≥ \frac{\sqrt{2}I_{rms}}{​2\pi f_{elec}ΔV} \\[4pt]
+ ΔV = 13.5 \\[4pt]
+ C \approx 5\,\mathrm{mF} \\[4pt]
+ V_{midpoint} = 200 \pm 13.5 \\[4pt]
+\]
+
+
+**Results & Notable Plots**
+![alt](Images_G0A/SLinvtest1_LoadVoltageCurrent.svg)
+![alt](Images_G0A/SLinvtest1_SwitchNodeVoltage.svg)
+![alt](Images_G0A/SLinvtest1_GateCurrents.svg)
+![alt](Images_G0A/SLinvtest1_HighSideTurnOnOff.svg)
+
+    HBM INVERTER SLinverter Test0 RESULTS
+    --- Power ---
+    Efficiency interval : 24 -> 44 ms
+    Average input power : 1934.394 W
+    Average output power: 1872.306 W
+    Efficiency          : 96.790 %
+    --- MOSFET Losses ---
+    High-side avg loss  : 26.604 W
+    Low-side avg loss   : 23.628 W
+    Total MOSFET loss   : 50.232 W
+    --- VDS Stress ---
+    High-side VDS max   : 428.413 V
+    Low-side VDS max    : 434.378 V
+    High-side VDS min   : -13.069 V
+    Low-side VDS min    : -13.109 V
+
+### 6.5 Digest and Conclusion
+
+The single-leg inverter simulations provide a first-pass validation of the
+`HBM_G0VH4C5` power stage under both high-frequency hard-switching and
+sinusoidal PWM operating conditions.
+
+The simulations confirm the expected overall switching behavior and provide
+an initial assessment of the following key design aspects:
+
+- MOSFET switching and commutation behavior
+- Gate-driver operation and gate-drive waveforms
+- Switch-node voltage overshoot and ringing
+- MOSFET voltage stress
+- Load-current behavior
+- Estimated MOSFET switching and conduction losses
+- Power-to-logic ground interaction and ground bounce
+- Effects of the estimated PCB and package parasitics
+
+Under the simulated conditions, the inverter achieved approximately **97.7%**
+efficiency in the high-frequency Test0 case and **96.8%** efficiency in the
+sinusoidal PWM Test1 case. The total simulated MOSFET losses were approximately
+**37.9 W** and **50.2 W**, respectively.
+
+The simulated maximum MOSFET drain-source voltage reached approximately
+**419 V** in Test0 and **434 V** in Test1. These results identify the
+switch-node voltage overshoot as an important hardware-validation point,
+particularly because the simulation includes estimated rather than measured
+parasitics.
+
+The simulations also produced negative drain-source voltage excursions of
+approximately **11--13 V** during commutation. This behavior is attributed to
+the interaction between the commutation current, parasitic inductance, and
+the MOSFET body-diode/freewheeling path, and should be verified experimentally
+during double-pulse and inverter testing.
+
+A significant ground-reference excursion was observed between `PGND` and
+`LGND`, reaching approximately:
+
+\[
+V_{PGND-LGND}\approx-0.6\,\mathrm{V}\ldots+0.6\,\mathrm{V}
+\]
+
+with an average magnitude of approximately **0.2 V** under the simulated
+worst-case conditions. This highlights the importance of minimizing the
+common impedance between the power and logic domains. In particular, the
+result reinforces the need for careful PCB grounding, short gate-drive
+return paths, and adequate noise immunity at the MGD logic inputs.
+
+Overall, the simulations indicate that the proposed HBM power-stage design
+is viable as a first-pass implementation, while identifying **switch-node
+overshoot, commutation transients, and PGND/LGND ground bounce** as the
+primary areas requiring hardware verification.
+
+The simulation results therefore serve as a baseline for subsequent
+prototype testing and layout refinement rather than as a replacement for
+physical validation.
+
+---
+
+## 7. Layout Considerations & Highlights
 
 Particular attention is given to the following layout-critical aspects:
 
@@ -835,374 +1189,20 @@ This arrangement therefore provides a compromise between maintaining the intende
 
 ---
 
-## 7. Design Files
-
-The complete hardware design files for this module are maintained in the ForgeX repository:
-
-**revA:**
-- [PCB & Schematic](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/HBM_G0VH4C5/revA)
-- [Simulation](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/HBM_G0VH4C5/revA/Doc/simulation)
-- **Manufacturing files:** 🛠️
-
----
-
-## 8. Simulation
-
-Simulation is used as a first-pass validation and design tool for the
-HBM.
-
-The simulations are intended to:
-
-- Validate initial electrical estimates
-- Evaluate the effects of layout-related parasitics
-- Assist with component sizing
-- Investigate switching behavior and transient effects
-- Provide a basis for first-pass design tuning
-
-Simulation results are not considered a substitute for physical testing
-and validation. Their accuracy depends on the quality, fidelity, and
-applicability of the underlying semiconductor, parasitic, and system
-models.
-
-The primary simulation focus is the power-electronics behavior of the
-module and its associated switching infrastructure.
-
-### 8.1 MOSFET Model
-
-An LTspice VDMOS-based MOSFET model was developed for the selected
-`STFH24N60M2`. The model parameters were tuned and tested against the
-available datasheet characteristics and test conditions.
-
-The model-development process was assisted by the
-[Hendrik Jan Zwerver LTspice VDMOS modeling guide](http://www.magma.ca/~legg/SR5/LTspice_build_in_VDmos_model.pdf).
-
-The following test circuits are provided under `simulation/`:
-
-- `simulation/STFH24N60M2_test_bodyDiode.asc` — DC body-diode characteristics
-- `simulation/STFH24N60M2_test_bodyDiode2.asc` — Double-pulse test and reverse-recovery tuning
-- `simulation/STFH24N60M2_test_cap.asc` — MOSFET parasitic-capacitance characterization
-- `simulation/STFH24N60M2_test_outChar.asc` — Output characteristics
-- `simulation/STFH24N60M2_test_tranChar.asc` — Transfer characteristics
-
-![alt text](Images_G0A/stfh24n60m2_ltspice.png)
-
-**Model Tuning Approach**
-
-The model was tuned primarily around the intended operating point rather
-than attempting to reproduce every datasheet characteristic with equal
-accuracy.
-
-The LTspice VDMOS model provides a limited set of degrees of freedom
-compared with a detailed manufacturer subcircuit. Consequently, the
-available parameters were selected and adjusted to provide useful
-agreement with the MOSFET behavior in the operating region relevant to
-the HBM.
-
-For example, parameters such as \(K_P\) were tuned around the intended
-operating drain-current region rather than being optimized solely for
-accuracy in the saturation region.
-
-Datasheet test circuits and their corresponding operating conditions were
-used as references during parameter tuning.
-
-This approach represents a deliberate compromise between **model
-accuracy and simulation performance**. A detailed manufacturer
-subcircuit could potentially provide greater fidelity across a wider
-range
-of operating conditions, but the VDMOS-based model provides a simpler and
-faster model for iterative power-electronics simulation.
-
-### 8.2 MOSFET Gate-Driver Model
-
-A behavioral LTspice model of the `L6388` gate driver was developed to
-reproduce the relevant characteristics of the gate-driver IC and its
-interaction with the MOSFET.
-
-The model was developed using the available datasheet information and
-tuned against the specified gate-driver characteristics, including:
-
-- Logic-input thresholds and hysteresis
-- Propagation delays
-- Typical deadtime
-- Gate-source and gate-sink output impedance
-- UVLO behavior
-- Internal bootstrap-diode behavior
-
-![alt text](Images_G0A/l6388_ltspice.png)
-
-The model is primarily intended to reproduce the gate driver's switching
-behavior and its interaction with the MOSFET gate network rather than to
-model the internal semiconductor implementation of the IC.
-
-The following test circuit is provided under `simulation/`:
-
-- `simulation/L6388_test.asc` — Gate-driver sourcing and sinking behavior using a
-  `1000 pF` load, used to compare the behavioral model against the
-  datasheet characteristics.
-
-### 8.3 HBM_G0VH4C5 Module Model
-
-A simulation model was developed for the `HBM_G0VH4C5` module to
-evaluate the electrical behavior of the complete half-bridge power stage.
-
-The model includes representations of:
-
-- Voltage-sensing behavior
-- Current-sensing behavior
-- MOSFET package parasitics
-- Power-input connection inductance
-- High-frequency switching-loop inductance
-- Gate-drive loop inductance
-- Shunt-resistor behavior
-- Other first-order parasitic elements relevant to the module
-
-![alt text](Images_G0A/hbm_g0vh4c5_ltspice.png)
-
-The model is intended to provide a first-order representation of the
-module's electrical behavior and to evaluate the interaction between the
-power stage, gate-drive circuitry, sensing circuitry, and parasitic
-elements.
-
-### 8.4 Inductive-Load Single-Leg Inverter Test
-
-The single-leg inverter model serves as a performance indicator for the
-`HBM_G0VH4C5` power stage.
-
-It provides a simplified environment for evaluating:
-
-- Switching behavior
-- Gate-drive performance
-- Commutation behavior
-- Switch-node voltage overshoot and ringing
-- Load-current behavior
-- Estimated switching losses
-- Effects of parasitic inductance and resistance
-
-The test environment is intentionally simpler than the complete
-system-level inverter, allowing individual characteristics of the HBM
-power stage to be evaluated before system-level integration.
-
-The single-leg inverter simulations include expected parasitic
-impedances of approximately:
-
-\[
-R_{PGND-LGND}=10\,\mathrm{m\Omega}
-\]
-
-and:
-
-\[
-L_{PGND-LGND}=20\,\mathrm{nH}
-\]
-
-between `PGND` and `LGND` for typical expected applications of the
-module.
-
-These parasitic elements allow the simulation to investigate logic
-reference shifts, ground bounce, common-impedance coupling, and related
-noise/EMI effects resulting from the interaction between the power and
-logic domains.
-
-#### 8.4.1 SLinverter Test0
-
-**Simulation file:** `simulation/HBM_SLinverter_test.asc`
-
-This test applies a **100 kHz PWM signal with 50% duty cycle** and no
-sinusoidal carrier to a **2 kW RL load** with:
-
-\[
-L_{Load}=10\,\mu\mathrm{H}
-\]
-
-The load resistance was selected to correspond to approximately 2 kW
-operation.
-
-
-**Load Resistor Sizing**
-\[
-\begin{aligned}
-V_{A} &= V_{VDCH}/2  \\[4pt] 
-V_{n,RMS} &= \frac{4V_{A}}{nπ \sqrt{2}} \\[4pt]
-V_{1,RMS} &= 180 \\[4pt]
-V_{3,RMS} &= 60 \\[4pt]
-XL_1&​=2πfL≈6.28Ω \\[4pt]
-XL_2&​=3\times2πfL≈18.85Ω \\[4pt]
-P_{Load} &= \frac{V_{1,RMS}^2R_{Load}}{R_{Load}^2+XL_{1}^2} + \frac{V_{3,RMS}^2R_{Load}}{R_{Load}^2+XL_{3}^2} \\[4pt]
-R_{Load} &= 14.21\,\Omega, 2.92\,\Omega \quad\text{(Choosing 14.21 for lower peak current)} \\[4pt] 
-R_{Load}& \approx14\,\Omega
-\end{aligned}
-\]
-
-**Split-Rail Capacitor Sizing**
-\[
- C ≥ \frac{\sqrt{2}I_{rms}}{2 \pi f_{SW}ΔV}
-\]
-choosing a 20uF per cap results in 
-\[
- ΔV = 1.35V \\[4pt]
- V_{midpoint} = 200 \pm 1.35
-\]
-
-**Results & Notable Plots**
-![alt](Images_G0A/SLinvtest0_LoadVoltageCurrent.svg)
-![alt](Images_G0A/SLinvtest0_SwitchNodeVoltage.svg)
-![alt](Images_G0A/SLinvtest0_GateCurrents.svg)
-![alt](Images_G0A/SLinvtest0_HighSideTurnOnOff.svg)
-
-    HBM INVERTER SLinverter Test0 RESULTS
-    --- Power ---
-    Efficiency interval : 1.500 -> 1.700 ms
-    Average input power : 2016.217 W
-    Average output power: 1969.905 W
-    Efficiency          : 97.703 %
-    --- MOSFET Losses ---
-    High-side avg loss  : 19.066 W
-    Low-side avg loss   : 18.833 W
-    Total MOSFET loss   : 37.899 W
-    --- VDS Stress ---
-    High-side VDS max   : 418.979 V
-    Low-side VDS max    : 418.874 V
-    High-side VDS min   : -11.204 V
-    Low-side VDS min    : -11.046 V
-
----
-
-#### 8.4.2 SLinverter Test1
-
-**Simulation file:** `simulation/HBM_SLinverter_test1.asc`
-
-This test applies a **10 kHz sinusoidal PWM signal** with a modulation
-index of:
-
-\[
-m=0.92
-\]
-
-to a **2 kW RL load** with:
-
-\[
-L_{Load}=1\,\mathrm{mH}
-\]
-
-The load resistance was selected to correspond to approximately 2 kW
-operation.
-
-**Load Resistor Sizing**
-\[
-\begin{aligned}
-V_{A} &= V_{VDCH}/2  \\[4pt] 
-V_{1,RMS} &= m\times \frac{200}{\sqrt{2}} = 130.1 \\[4pt]
-XL&​=2πfL≈0.314\Omega \\[4pt]
-P_{Load} &= \frac{V_{1,RMS}^2R_{Load}}{R_{Load}^2+XL^2} \\[4pt]
-R_{Load} &= 8.45\,\Omega,  11.66\,m\Omega \quad\text{(Choosing 8.45 for lower peak current)} \\[4pt] 
-R_{Load} &\approx8.5\,\Omega
-\end{aligned}
-\]
-
-**Split-Rail Capacitor Sizing**
-\[
- C ≥ \frac{\sqrt{2}I_{rms}}{​2\pi f_{elec}ΔV} \\[4pt]
- ΔV = 13.5 \\[4pt]
- C \approx 5\,\mathrm{mF} \\[4pt]
- V_{midpoint} = 200 \pm 13.5 \\[4pt]
-\]
-
-
-**Results & Notable Plots**
-![alt](Images_G0A/SLinvtest1_LoadVoltageCurrent.svg)
-![alt](Images_G0A/SLinvtest1_SwitchNodeVoltage.svg)
-![alt](Images_G0A/SLinvtest1_GateCurrents.svg)
-![alt](Images_G0A/SLinvtest1_HighSideTurnOnOff.svg)
-
-    HBM INVERTER SLinverter Test0 RESULTS
-    --- Power ---
-    Efficiency interval : 24 -> 44 ms
-    Average input power : 1934.394 W
-    Average output power: 1872.306 W
-    Efficiency          : 96.790 %
-    --- MOSFET Losses ---
-    High-side avg loss  : 26.604 W
-    Low-side avg loss   : 23.628 W
-    Total MOSFET loss   : 50.232 W
-    --- VDS Stress ---
-    High-side VDS max   : 428.413 V
-    Low-side VDS max    : 434.378 V
-    High-side VDS min   : -13.069 V
-    Low-side VDS min    : -13.109 V
-
-### 8.5 Digest and Conclusion
-
-The single-leg inverter simulations provide a first-pass validation of the
-`HBM_G0VH4C5` power stage under both high-frequency hard-switching and
-sinusoidal PWM operating conditions.
-
-The simulations confirm the expected overall switching behavior and provide
-an initial assessment of the following key design aspects:
-
-- MOSFET switching and commutation behavior
-- Gate-driver operation and gate-drive waveforms
-- Switch-node voltage overshoot and ringing
-- MOSFET voltage stress
-- Load-current behavior
-- Estimated MOSFET switching and conduction losses
-- Power-to-logic ground interaction and ground bounce
-- Effects of the estimated PCB and package parasitics
-
-Under the simulated conditions, the inverter achieved approximately **97.7%**
-efficiency in the high-frequency Test0 case and **96.8%** efficiency in the
-sinusoidal PWM Test1 case. The total simulated MOSFET losses were approximately
-**37.9 W** and **50.2 W**, respectively.
-
-The simulated maximum MOSFET drain-source voltage reached approximately
-**419 V** in Test0 and **434 V** in Test1. These results identify the
-switch-node voltage overshoot as an important hardware-validation point,
-particularly because the simulation includes estimated rather than measured
-parasitics.
-
-The simulations also produced negative drain-source voltage excursions of
-approximately **11--13 V** during commutation. This behavior is attributed to
-the interaction between the commutation current, parasitic inductance, and
-the MOSFET body-diode/freewheeling path, and should be verified experimentally
-during double-pulse and inverter testing.
-
-A significant ground-reference excursion was observed between `PGND` and
-`LGND`, reaching approximately:
-
-\[
-V_{PGND-LGND}\approx-0.6\,\mathrm{V}\ldots+0.6\,\mathrm{V}
-\]
-
-with an average magnitude of approximately **0.2 V** under the simulated
-worst-case conditions. This highlights the importance of minimizing the
-common impedance between the power and logic domains. In particular, the
-result reinforces the need for careful PCB grounding, short gate-drive
-return paths, and adequate noise immunity at the MGD logic inputs.
-
-Overall, the simulations indicate that the proposed HBM power-stage design
-is viable as a first-pass implementation, while identifying **switch-node
-overshoot, commutation transients, and PGND/LGND ground bounce** as the
-primary areas requiring hardware verification.
-
-The simulation results therefore serve as a baseline for subsequent
-prototype testing and layout refinement rather than as a replacement for
-physical validation.
-
----
-
-## 9. Field Tests and Validation 🛠️
+## 8. Field Tests and Validation 🛠️
 
 [Document laboratory testing, measurements, test conditions, and
 comparison against simulation.]
 
 ---
 
-## 10. Known Issues and Limitations 🛠️
+## 9. Known Issues and Limitations 🛠️
 
 [Document known limitations of Rev. A / Gen0.]
 
 ---
 
-## 11. Revisions
+## 10. Revisions
 
 | Revision | Date | Description |
 |---|---|---|

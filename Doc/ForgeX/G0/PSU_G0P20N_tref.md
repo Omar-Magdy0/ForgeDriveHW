@@ -94,6 +94,17 @@ This includes:
 
 The conditioned VDCH measurement is particularly relevant to applications such as motor drives and power converters, where the controller may require knowledge of the instantaneous DC-link voltage for functions including duty-cycle calculation, modulation limits, protection, or supervisory monitoring.
 
+### 1.3 Design Files
+
+The complete hardware design files for this module are maintained in the ForgeX repository:
+
+![](Images_G0A/PSU_G0P20N.pdf)
+
+**revA:**
+- [PCB & Schematic](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/PSU_G0P20N/revA)
+- [Simulation](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/PSU_G0P20N/revA/Doc/simulation)
+- **Manufacturing files:** 🛠️
+
 ---
 
 ## 2. Interfaces & I/O
@@ -1381,117 +1392,7 @@ operating conditions.
 
 ---
 
-## 6. Layout Considerations & Highlights
-
-![PSU layout](Images_G0A/PSU1e.svg)
-
-The PCB layout was developed with particular attention to high-voltage
-creepage and clearance, galvanic isolation, thermal management, and
-minimization of high-\(di/dt\) current-loop areas.
-
-### 6.1 High-Voltage Clearance and Isolation
-
-The primary-side VDCH domain is physically separated from the low-voltage
-secondary domain.
-
-Particular attention was given to the spacing between high-voltage nodes and
-the primary-side ground. The minimum identified creepage distance between
-the VIPer26 drain node and the corresponding ground region is approximately
-\(2.5\,\mathrm{mm}\).
-
-The primary-to-secondary isolation barrier provides approximately
-\(6\,\mathrm{mm}\) of physical separation. This distance is primarily governed
-by the mechanical dimensions and pin geometry of the feedback optocoupler.
-
-The RCD clamp network and VDCH voltage-sensing divider are implemented using
-1206-package resistors. Their placement and spacing account for the voltage
-rating and creepage requirements of the resistor packages and associated PCB
-conductors.
-
-High-voltage switching nodes are kept physically separated from sensitive
-low-voltage circuitry wherever practical.
-
-### 6.2 Primary Switch Thermal Management
-
-The VIPer26 drain connection is implemented using an approximately
-\(100\,\mathrm{mm^2}\) copper area. This copper region provides both the
-electrical drain connection and a PCB-based heat-spreading path for the
-integrated switching device.
-
-The increased copper area reduces the effective thermal impedance between the
-device package and the PCB and is intended to provide an effective
-junction-to-ambient thermal resistance of approximately
-
-\[
-R_{\theta JA}\approx90\,^\circ\mathrm{C/W}
-\]
-
-for the implemented package and PCB configuration.
-
-The resulting junction temperature is determined from the device power
-dissipation together with the expected ambient temperature and effective
-thermal resistance.
-
-### 6.3 High-\(di/dt\) Current Loops
-
-Particular attention was given to minimizing the physical area enclosed by
-the principal high-\(di/dt\) current loops.
-
-Reducing these loop areas reduces parasitic inductance and consequently
-limits switching-node voltage overshoot, ringing, electromagnetic coupling,
-and high-frequency conducted noise.
-
-The principal high-\(di/dt\) loops identified during the layout design are
-shown in the preceding figure.
-
-**1. Secondary Rectifier and Output-Capacitor Loop**
-The principal secondary-side commutation loop consists of:
-Transformer secondary → Output diode → Output capacitor → Transformer secondary return
-
-**2. Synchronous Buck Input Loop**
-The principal high-frequency input loop of the 12V-to-5V
-buck converter consists approximately of:
-$C_{IN}+$ → Switching stage / VCC → GND → $C_{IN}-$
-The $C_{IN}$ decoupling capacitor is positioned close to the converter
-power-stage connections to minimize the input switching-current loop
-inductance.
-
-**3. Primary Flyback Switching Loop**
-The primary flyback switching loop consists of:
-$C_{IN}+$ → Transformer primary → switcher drain → switcher source / PGND → $C_{IN}-$
-
-This loop carries the primary switching current and is therefore kept as
-compact as practical.
-The input capacitor, transformer primary winding, and Switcher device
-are positioned to minimize the enclosed loop area and associated
-parasitic inductance.
-
-**4. RCD Clamp Loop**
-The RCD clamp provides the high-frequency current path for the energy
-associated with the transformer leakage inductance during primary switch
-turn-off.
-
-The RCD components are placed close to the transformer primary and the
-Switcher drain connection to minimize the physical area enclosed by the clamp
-current path.
-
-Minimizing this loop reduces its parasitic inductance and limits additional
-high-frequency voltage overshoot and ringing at the primary switching node.
-
----
-
-## 7. Design Files
-
-The complete hardware design files for this module are maintained in the ForgeX repository:
-
-**revA:**
-- [PCB & Schematic](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/PSU_G0P20N/revA)
-- [Simulation](https://github.com/Omar-Magdy0/ForgeDriveHW/tree/main/ForgeX/PSU_G0P20N/revA/Doc/simulation)
-- **Manufacturing files:** 🛠️
-
----
-
-## 8. Simulation
+## 6. Simulation
 
 Simulation is used as a first-pass validation and design tool for the
 PSU.
@@ -1661,20 +1562,119 @@ model:
 
 ---
 
-## 9. Field Tests and Validation 🛠️
+## 7. Layout Considerations & Highlights
+
+![PSU layout](Images_G0A/PSU1e.svg)
+
+The PCB layout was developed with particular attention to high-voltage
+creepage and clearance, galvanic isolation, thermal management, and
+minimization of high-\(di/dt\) current-loop areas.
+
+### 7.1 High-Voltage Clearance and Isolation
+
+The primary-side VDCH domain is physically separated from the low-voltage
+secondary domain.
+
+Particular attention was given to the spacing between high-voltage nodes and
+the primary-side ground. The minimum identified creepage distance between
+the VIPer26 drain node and the corresponding ground region is approximately
+\(2.5\,\mathrm{mm}\).
+
+The primary-to-secondary isolation barrier provides approximately
+\(6\,\mathrm{mm}\) of physical separation. This distance is primarily governed
+by the mechanical dimensions and pin geometry of the feedback optocoupler.
+
+The RCD clamp network and VDCH voltage-sensing divider are implemented using
+1206-package resistors. Their placement and spacing account for the voltage
+rating and creepage requirements of the resistor packages and associated PCB
+conductors.
+
+High-voltage switching nodes are kept physically separated from sensitive
+low-voltage circuitry wherever practical.
+
+### 7.2 Primary Switch Thermal Management
+
+The VIPer26 drain connection is implemented using an approximately
+\(100\,\mathrm{mm^2}\) copper area. This copper region provides both the
+electrical drain connection and a PCB-based heat-spreading path for the
+integrated switching device.
+
+The increased copper area reduces the effective thermal impedance between the
+device package and the PCB and is intended to provide an effective
+junction-to-ambient thermal resistance of approximately
+
+\[
+R_{\theta JA}\approx90\,^\circ\mathrm{C/W}
+\]
+
+for the implemented package and PCB configuration.
+
+The resulting junction temperature is determined from the device power
+dissipation together with the expected ambient temperature and effective
+thermal resistance.
+
+### 7.3 High-\(di/dt\) Current Loops
+
+Particular attention was given to minimizing the physical area enclosed by
+the principal high-\(di/dt\) current loops.
+
+Reducing these loop areas reduces parasitic inductance and consequently
+limits switching-node voltage overshoot, ringing, electromagnetic coupling,
+and high-frequency conducted noise.
+
+The principal high-\(di/dt\) loops identified during the layout design are
+shown in the preceding figure.
+
+**1. Secondary Rectifier and Output-Capacitor Loop**
+The principal secondary-side commutation loop consists of:
+Transformer secondary → Output diode → Output capacitor → Transformer secondary return
+
+**2. Synchronous Buck Input Loop**
+The principal high-frequency input loop of the 12V-to-5V
+buck converter consists approximately of:
+$C_{IN}+$ → Switching stage / VCC → GND → $C_{IN}-$
+The $C_{IN}$ decoupling capacitor is positioned close to the converter
+power-stage connections to minimize the input switching-current loop
+inductance.
+
+**3. Primary Flyback Switching Loop**
+The primary flyback switching loop consists of:
+$C_{IN}+$ → Transformer primary → switcher drain → switcher source / PGND → $C_{IN}-$
+
+This loop carries the primary switching current and is therefore kept as
+compact as practical.
+The input capacitor, transformer primary winding, and Switcher device
+are positioned to minimize the enclosed loop area and associated
+parasitic inductance.
+
+**4. RCD Clamp Loop**
+The RCD clamp provides the high-frequency current path for the energy
+associated with the transformer leakage inductance during primary switch
+turn-off.
+
+The RCD components are placed close to the transformer primary and the
+Switcher drain connection to minimize the physical area enclosed by the clamp
+current path.
+
+Minimizing this loop reduces its parasitic inductance and limits additional
+high-frequency voltage overshoot and ringing at the primary switching node.
+
+---
+
+## 8. Field Tests and Validation 🛠️
 
 [Document laboratory testing, measurements, test conditions, and
 comparison against simulation.]
 
 ---
 
-## 10. Known Issues and Limitations 🛠️
+## 9. Known Issues and Limitations 🛠️
 
 [Document known limitations of Rev. A / Gen0.]
 
 ---
 
-## 11. Revisions
+## 10. Revisions
 
 | Revision | Date | Description |
 |---|---|---|

@@ -39,9 +39,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.0,
-          "height": 1.7,
-          "width": 1.7
+          "drill": 0.0,
+          "height": 0.95,
+          "width": 1.075
         },
         "silk_line_width": 0.1,
         "silk_text_italic": false,
@@ -66,7 +66,7 @@
           "pad_connection": 2,
           "remove_islands": 0,
           "thermal_relief_gap": 0.5,
-          "thermal_relief_spoke_width": 0.5
+          "thermal_relief_spoke_width": 0.8
         }
       },
       "diff_pair_dimensions": [
@@ -679,7 +679,7 @@
         "uuid": "0a54fd2d-99a5-4e60-ba97-5892c84fd6a0"
       }
     ],
-    "used_designators": "U1,#PWR1-3,R1-8,J1,J6",
+    "used_designators": "U1-5,#PWR1-3,R1-12,J1-4,J6,C1-5",
     "variants": []
   },
   "sheets": [

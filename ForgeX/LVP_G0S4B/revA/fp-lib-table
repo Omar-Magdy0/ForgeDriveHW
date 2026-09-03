@@ -1,0 +1,6 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "Libmain") (type "KiCad") (uri "${KIPRJMOD}/../../../SharedLib/Libmain.pretty") (options "") (descr ""))
+	(lib (name "EasyEDA") (type "KiCad") (uri "${KIPRJMOD}/../../../SharedLib/EasyEDA.pretty") (options "") (descr ""))
+	(lib (name "LibLocal") (type "KiCad") (uri "${KIPRJMOD}/LibLocal.pretty") (options "") (descr ""))
+)

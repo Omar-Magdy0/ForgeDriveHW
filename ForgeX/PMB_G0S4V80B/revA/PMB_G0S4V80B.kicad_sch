@@ -594,6 +594,172 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Device:D_Unitunnel"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "D"
+				(at 0 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "D_Unitunnel"
+				(at 0 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Unitunnel diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "unitunnel diode"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "D_Unitunnel_0_1"
+				(polyline
+					(pts
+						(xy -1.778 -1.27) (xy -0.762 -1.27) (xy -1.27 -1.27) (xy -1.27 1.27) (xy -0.762 1.27) (xy -1.778 1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "D_Unitunnel_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Jumper:Jumper_2_Bridged"
 			(pin_numbers
 				(hide yes)
@@ -1242,6 +1408,16 @@
 	)
 	(wire
 		(pts
+			(xy 39.37 154.94) (xy 39.37 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "310d0b30-6f7a-4a5b-86dd-cbba0d7d687c")
+	)
+	(wire
+		(pts
 			(xy 48.26 66.04) (xy 48.26 68.58)
 		)
 		(stroke
@@ -1399,6 +1575,16 @@
 			(type default)
 		)
 		(uuid "7de80ff1-041b-4961-99a0-3478230ee5fa")
+	)
+	(wire
+		(pts
+			(xy 39.37 144.78) (xy 39.37 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83f242ab-51ca-4a55-990d-08cecfa1584f")
 	)
 	(wire
 		(pts
@@ -1702,9 +1888,87 @@
 			(uuid "a634e394-9a37-4f3e-a9d7-ef3ffb354888")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "JP4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 39.37 144.78 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0b6fbbf7-e501-455d-9517-ba1cccd39239")
+		(property "Reference" "#PWR011"
+			(at 39.37 148.59 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "HVDC"
+			(at 39.37 139.7 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 39.37 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 39.37 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VCC\""
+			(at 39.37 144.78 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8cfa1422-1840-4d18-ae71-c438366e8b80")
+		)
+		(instances
+			(project "PMB_G0S4V80B"
+				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -1780,7 +2044,7 @@
 			(uuid "e704252d-bffd-4f38-81db-22972fbfbc47")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR03")
 					(unit 1)
@@ -1858,7 +2122,7 @@
 			(uuid "ff7dd815-4047-478f-b9b3-1e35694b540a")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR02")
 					(unit 1)
@@ -1937,7 +2201,7 @@
 			(uuid "e2342339-031f-4fc3-aa0f-fb945dbac59c")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J6")
 					(unit 1)
@@ -2015,7 +2279,7 @@
 			(uuid "a9d34507-8bf4-4532-9ade-916bd665d5e9")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR07")
 					(unit 1)
@@ -2096,7 +2360,7 @@
 			(uuid "66f9e7a0-add8-48ed-a46c-3f217ff98105")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "C1")
 					(unit 1)
@@ -2174,7 +2438,7 @@
 			(uuid "e99d4071-7937-4ef9-9395-f9faf5868c8a")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR04")
 					(unit 1)
@@ -2253,7 +2517,7 @@
 			(uuid "e849b68b-afd7-4f74-b7b1-9b2281a261c9")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J4")
 					(unit 1)
@@ -2332,7 +2596,7 @@
 			(uuid "bf17bcb7-8d5e-4838-9c42-75848cf54225")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J14")
 					(unit 1)
@@ -2411,7 +2675,7 @@
 			(uuid "166e494f-be29-411d-ae9d-8ad0eebb6a2a")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J9")
 					(unit 1)
@@ -2489,7 +2753,7 @@
 			(uuid "4cde0cda-a610-46a6-aff0-92622bdf07d8")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR014")
 					(unit 1)
@@ -2567,7 +2831,7 @@
 			(uuid "4b00f157-04ee-4c08-b1a4-9ad11d0e4d6f")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR08")
 					(unit 1)
@@ -2650,7 +2914,7 @@
 			(uuid "7da5e0c0-f94d-48ba-8d6c-e035666b6b1f")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J1")
 					(unit 1)
@@ -2729,7 +2993,7 @@
 			(uuid "7339cdc5-3b12-4c89-8c65-c613ff4a1db0")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J17")
 					(unit 1)
@@ -2810,7 +3074,7 @@
 			(uuid "06d685ec-edb0-41b7-aa59-7f38d6920b17")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "C2")
 					(unit 1)
@@ -2890,7 +3154,7 @@
 			(uuid "5db341cf-87da-4af6-8fda-1942a87e1730")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "JP5")
 					(unit 1)
@@ -2969,7 +3233,7 @@
 			(uuid "120f4901-5d28-462d-92d8-4fe00089159e")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J13")
 					(unit 1)
@@ -3047,7 +3311,7 @@
 			(uuid "523fa84d-35ba-4c56-8138-914f61927233")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR06")
 					(unit 1)
@@ -3127,7 +3391,7 @@
 			(uuid "08e5f476-b03d-4b41-88d4-aea31182506e")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "JP3")
 					(unit 1)
@@ -3205,7 +3469,7 @@
 			(uuid "be413d39-b909-493d-9aa1-b50e57d8e743")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR01")
 					(unit 1)
@@ -3288,7 +3552,7 @@
 			(uuid "c4716438-4e87-478e-9410-a5aaceb84e65")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J2")
 					(unit 1)
@@ -3371,7 +3635,7 @@
 			(uuid "b99b6c3e-ad10-4d9a-aa39-d16e600e72af")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J3")
 					(unit 1)
@@ -3449,7 +3713,7 @@
 			(uuid "e0c0035b-c6e3-4162-9ec9-6d9c8d18c28e")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR012")
 					(unit 1)
@@ -3525,9 +3789,91 @@
 			)
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "H1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:D_Unitunnel")
+		(at 39.37 151.13 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ba30efcb-5db6-46a5-81bc-d9c8d511a0f9")
+		(property "Reference" "D1"
+			(at 41.91 149.6059 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "P6KE47A"
+			(at 41.91 152.1459 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Diode_THT:D_DO-15_P10.16mm_Horizontal"
+			(at 39.37 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 39.37 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Unitunnel diode"
+			(at 39.37 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "56631b0f-2b02-439d-aef7-85103155adf2")
+		)
+		(pin "1"
+			(uuid "d37a89c3-d59e-46cd-a46d-6af923a31a47")
+		)
+		(instances
+			(project "PMB_G0S4V80B"
+				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -3608,7 +3954,7 @@
 			(uuid "aaf019b4-8286-4e1f-8d8f-46aa0a6cb28c")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J12")
 					(unit 1)
@@ -3684,7 +4030,7 @@
 			)
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "H2")
 					(unit 1)
@@ -3762,7 +4108,7 @@
 			(uuid "6fdc7022-e453-414c-81e1-402d9fceb9cb")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR09")
 					(unit 1)
@@ -3843,9 +4189,87 @@
 			(uuid "4e62b786-89b7-4c49-b842-f10355826e1e")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "C4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 39.37 157.48 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "cfd00bff-87b2-432f-b15a-cf87255580ea")
+		(property "Reference" "#PWR010"
+			(at 39.37 163.83 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 39.37 162.56 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 39.37 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 39.37 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 39.37 157.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4e1c29de-a3c1-49f0-891d-d66425468213")
+		)
+		(instances
+			(project "PMB_G0S4V80B"
+				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -3921,7 +4345,7 @@
 			(uuid "8bdd585e-6f60-4a42-b693-44694e216e96")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR05")
 					(unit 1)
@@ -3999,7 +4423,7 @@
 			(uuid "9f256898-0155-4d76-83e8-24edaeed9119")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "#PWR013")
 					(unit 1)
@@ -4078,7 +4502,7 @@
 			(uuid "e6b0e712-c096-4acb-926e-065489802f96")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J5")
 					(unit 1)
@@ -4157,7 +4581,7 @@
 			(uuid "6e2a48c4-d466-4735-b3dd-396acb4e69a4")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "J8")
 					(unit 1)
@@ -4237,7 +4661,7 @@
 			(uuid "3a9ecf44-bf93-402e-892e-7ac58e062cf2")
 		)
 		(instances
-			(project "PMB_G0S4VH1B"
+			(project "PMB_G0S4V80B"
 				(path "/98daacc5-ceea-4950-a399-3b6a90e46099"
 					(reference "JP1")
 					(unit 1)

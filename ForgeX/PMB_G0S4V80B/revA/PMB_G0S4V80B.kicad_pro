@@ -731,13 +731,13 @@
         "uuid": "98daacc5-ceea-4950-a399-3b6a90e46099"
       }
     ],
-    "used_designators": "C1-4,#PWR1-14,JP1-5,H1-4,J1-18",
+    "used_designators": "C1-4,D1,#PWR1-14,JP1-5,H1-4,J1-18",
     "variants": []
   },
   "sheets": [
     [
       "98daacc5-ceea-4950-a399-3b6a90e46099",
-      "PMB_G0S4VH1B"
+      "PMB_G0S4V80B"
     ]
   ],
   "text_variables": {},

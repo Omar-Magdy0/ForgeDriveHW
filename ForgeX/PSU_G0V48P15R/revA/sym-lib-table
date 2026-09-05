@@ -1,0 +1,6 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "EasyEDA") (type "KiCad") (uri "${KIPRJMOD}/../../../SharedLib/EasyEDA.kicad_sym") (options "") (descr ""))
+	(lib (name "libmain") (type "KiCad") (uri "${KICAD_3RD_PARTY}/libmain.kicad_sym") (options "") (descr ""))
+	(lib (name "liblocal") (type "KiCad") (uri "${KIPRJMOD}/liblocal.kicad_sym") (options "") (descr ""))
+)

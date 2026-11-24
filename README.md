@@ -315,7 +315,6 @@ ForgeDriveHW's original project materials are offered under the same **dual lice
 - Open-source use under **GNU GPLv3-only**, subject to its terms. See [`LICENSES/GPL-3.0-only.txt`](LICENSES/GPL-3.0-only.txt).
 - Closed-source products and other uses that cannot comply with GPLv3 require a separate written commercial license. See [`docs/licensing.md`](docs/licensing.md) for scope and contact details.
 
-ForgeDriveHW was previously distributed under MIT. The prior MIT grant is preserved in [`LICENSES/MIT-Legacy.txt`](LICENSES/MIT-Legacy.txt), and rights already granted under MIT remain valid. This change does not make a commercial license mandatory for uses already permitted by that grant. The dual-license offer applies only to original materials for which the rights holder is authorized to grant both licenses. Third-party components and assets retain their own licenses; review their notices before redistribution.
 ---
 
 ## Acknowledgements

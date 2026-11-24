@@ -1,21 +1,32 @@
-MIT License
+ForgeDriveHW is dual licensed.
 
-Copyright (c) 2026 Omar-Magdy0
+1. GNU General Public License version 3 only
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+You may use, modify, and distribute the ForgeDriveHW project materials
+covered by this offer under the GNU General Public License, version 3 only.
+A copy of the license is provided in LICENSES/GPL-3.0-only.txt.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. Commercial license
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+If you need to use or distribute covered ForgeDriveHW project materials in a
+proprietary or closed-source product, or otherwise cannot comply with GPLv3,
+you must obtain a separate written commercial license from the ForgeDriveHW
+rights holder before that use or distribution. Commercial terms are agreed
+separately; this file does not itself grant commercial rights.
+
+This dual-license offer applies only to original ForgeDriveHW project
+materials in the first-party project directories (including ForgeX/ and
+Doc/) for which the ForgeDriveHW rights holder is authorized to grant these
+rights. It does not apply to third-party software, assets, generated
+material whose licensing is determined by its inputs, or other materials
+with separate license notices. Those materials remain subject to their own
+terms. See docs/licensing.md for scope and further information.
+
+Previously distributed materials remain available under the MIT License
+terms in LICENSES/MIT-Legacy.txt where that grant applies. This dual-license
+offer does not revoke or limit rights already granted under MIT.
+
+Unless required by applicable law or agreed to in writing, covered
+ForgeDriveHW project materials are provided without warranty. See GPLv3 for
+the full warranty disclaimer and limitation of liability applicable to the
+GPLv3 grant.
